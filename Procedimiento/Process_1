@@ -1,16 +1,16 @@
-/*Este procedimiento almacenado está diseñado para seleccionar, los datos se seleccionan
-de tal manera que muestran el ID del cliente, su nombre, el ID de la película y el título de la película. */
+/*Este procedimiento almacenado está diseñado para 
+incrementar el precio de alquiler de todas las películas en una cantidad específica 
+proporcionada como parámetro,. */
 
 USE sakila;
 DELIMITER $$
-DROP PROCEDURE IF EXISTS MostrarDatosSakila$$
-CREATE PROCEDURE MostrarDatosSakila()
-BEGIN
-    SELECT customer_id, first_name, film_id, title
-    FROM customer 
-    JOIN inventory ON customer.customer_id = inventory.customer_id
-    JOIN film ON inventory.film_id = film.film_id;
+DROP PROCEDURE IF EXISTS AumentarPrecioAlquiler$$
 
-    SELECT 'El procedimiento MostrarDatosSakila se ha ejecutado correctamente' AS Mensaje;
+CREATE PROCEDURE AumentarPrecioAlquiler(IN p_incremento DECIMAL(5,2))
+BEGIN
+    UPDATE film
+    SET rental_rate = rental_rate + p_incremento;
+
+    SELECT 'El procedimiento AumentarPrecioAlquiler se ha ejecutado correctamente' AS Mensaje;
 END$$
 DELIMITER ;
