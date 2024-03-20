@@ -7,8 +7,10 @@ DROP PROCEDURE IF EXISTS MostrarDatosSakila$$
 CREATE PROCEDURE MostrarDatosSakila()
 BEGIN
     SELECT customer_id, first_name, film_id, title
-    FROM sakila.customer 
-    JOIN sakila.inventory  ON customer.customer_id = inventory.customer_id
-    JOIN sakila.film ON inventory.film_id = film.film_id;
+    FROM customer 
+    JOIN inventory ON customer.customer_id = inventory.customer_id
+    JOIN film ON inventory.film_id = film.film_id;
+
+    SELECT 'El procedimiento MostrarDatosSakila se ha ejecutado correctamente' AS Mensaje;
 END$$
 DELIMITER ;
