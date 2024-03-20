@@ -1,1 +1,14 @@
-
+/*toma el ID del cliente como parámetro de entrada y devuelve la cantidad total de alquileres realizados por ese cliente.*/
+'''SQL 
+USE sakila;
+DELIMITER $$
+CREATE FUNCTION CalcularTotalAlquileres(cliente_id INT)
+RETURNS INT
+BEGIN
+    DECLARE total_alquileres INT;
+    SELECT COUNT(*) INTO total_alquileres
+    FROM rental
+    WHERE customer_id = cliente_id;
+    RETURN total_alquileres;
+END$$
+DELIMITER ;
