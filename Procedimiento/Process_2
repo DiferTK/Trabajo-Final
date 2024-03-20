@@ -1,1 +1,16 @@
-B
+/* Tiene como función mostrar los primeros 10 nombres de clientes de la tabla customer 
+en la base de datos "sakila" y luego mostrar un mensaje indicando que se ha ejecutado correctamente. */
+
+USE sakila;
+DELIMITER $$
+DROP PROCEDURE IF EXISTS AumentarPrecioAlquiler$$
+CREATE PROCEDURE AumentarPrecioAlquiler(IN p_incremento DECIMAL(5,2))
+BEGIN
+    UPDATE film
+    SET rental_rate = rental_rate + p_incremento;
+    SELECT film_id, title, rental_rate
+    FROM film
+    ORDER BY RAND()
+    LIMIT 5;
+END$$
+DELIMITER ;
